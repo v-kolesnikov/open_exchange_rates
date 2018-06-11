@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'webmock/rspec'
+
 require 'open_exchange_rates'
 
 RSpec.configure do |config|
