@@ -11,19 +11,25 @@ module OpenExchangeRates
       get "/historical/#{date.iso8601}.json", params
     end
 
-    def currencies
+    def currencies(params = {})
+      get 'currencies.json', params
     end
 
-    def time_series
+    def time_series(params = {})
+      get 'time-series.json', params
     end
 
-    def convert
+    def convert(value:, from:, to:)
+      get "convert/#{value}/#{from}/#{to}"
     end
 
-    def ohlc
+    def ohlc(params)
+      raise ArgumentError unless %i[start_time period].all? { |param| params.key?(param) }
+      get 'ohlc.json', params
     end
 
     def usage
+      get 'usage.json'
     end
   end
 end
